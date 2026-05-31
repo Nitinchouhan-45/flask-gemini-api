@@ -2,7 +2,10 @@ from flask import Flask, app, render_template, request, jsonify
 import google.generativeai as genai
 app = Flask(__name__)
 
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Create the model object
 model = genai.GenerativeModel(
@@ -11,7 +14,7 @@ system_instruction=
          ( "You are a helpful assistant that answers questions in a concise and informative manner. "
          )
          )
-genai.configure(api_key="AIzaSyDk9dvwN00HO_YgeCjhWzomsPY5aaW78mQ")
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 @app.route("/ask", methods=["POST"])
 
 def ask():
