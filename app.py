@@ -20,11 +20,6 @@ def ask():
         user_input = request.json.get("question")
         response = model.generate_content(user_input)   
         return jsonify({"answer": response.text})
-    
-    
-
-
-
 
 if  __name__ == "__main__":
     app.run(debug=True)
